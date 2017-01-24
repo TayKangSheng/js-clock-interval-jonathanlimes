@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var time = now.toLocaleTimeString()
   var timeArr = time.split(':')
   var currentHour = parseInt(timeArr[0])
+  function amPMHour () {
+    if (currentHour > 12) {
+      return currentHour - 12
+    } else {
+      return currentHour
+    }
+  }
+  var formattedHour = amPMHour()
   var currentMinute = parseInt(timeArr[1])
   var currentSecond = parseInt(timeArr[2])
 
@@ -23,10 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function hourRotation (num) {
-    if (num === 360) {
+    if (num === 12) {
       return 0
     } else {
-      return num
+      return (num / 12) * 360
     }
   }
 
@@ -41,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var minuteCount = currentMinute
+  minute.style.transform = 'rotate(' + rotation(minuteCount) + 'deg)'
   setInterval(tickMinute, 1000 * 60)
   function tickMinute () {
     minuteCount++
@@ -50,12 +59,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  var hourCount = currentHour
-  setInterval(tickHour, 1000 * 60 * 2)
+  var hourCount = formattedHour
+  hour.style.transform = 'rotate(' + hourRotation(hourCount) + 'deg)'
+  setInterval(tickHour, 1000 * 60 * 60)
   function tickHour () {
     hourCount++
     hour.style.transform = 'rotate(' + hourRotation(hourCount) + 'deg)'
-    if (hourCount === 360) {
+    if (hourCount === 12) {
       hourCount = 0
     }
   }
