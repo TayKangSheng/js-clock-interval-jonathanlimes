@@ -8,25 +8,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function tick (hand) {
     if (hand === second || hand === minute) {
-      hand.style.transform = 'rotate(6 deg)'
+      hand.style.transform = 'rotate(' + secondMinRotation(1) + 'deg)'
     } else if (hand === hour) {
-      hand.style.transform = 'rotate(30 deg)'
+      hand.style.transform = 'rotate(' + degrees + 'deg)'
     }
   }
 
-  var tickSecond = setInterval(tick(second), 1000)
+  // set counter,
+  var secondCount = 0
+  // every 1000ms,
+  setInterval(tickSecond, 1000)
+  // run tick function which will rotate the sec hand
+  function tickSecond () {
+    secondCount++
+    second.style.transform = 'rotate(' + secondMinRotation(secondCount) + 'deg)'
+    if (secondCount === 60) {
+      secondCount = 0
+    }
+  }
+
+  var minuteCount = 0
+  setInterval(tickHour, 1000*60)
+
+  var
+
   var tickMinute = setInterval(tick(minute), 1000 * 60)
   var tickHour = setInterval(tick(hour), 1000 * 60 * 60)
 
-  function secondRotation (num) {
-    if (num === 60) {
-      return 0
-    } else {
-      return (num / 12) * 360
-    }
-  }
-
-  function minuteRotation (num) {
+  function secondMinRotation (num) {
     if (num === 60) {
       return 0
     } else {
