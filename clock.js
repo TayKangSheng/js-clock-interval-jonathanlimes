@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var secondCount = currentSecond
-  setInterval(tickSecond, 10)
+  setInterval(tickSecond, 1000)
   function tickSecond () {
     secondCount++
     second.style.transform = 'rotate(' + secondRotation(secondCount) + 'deg)'
@@ -35,30 +35,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var minuteCount = currentMinute
-  minute.style.transform = 'rotate(' + minuteRotation(minuteCount, secondCount) + 'deg)'
+  minute.style.transform = 'rotate(' + minuteRotation(minuteCount) + 'deg)'
   // to make sure minute hand turns only when the second hand hits twelve
   if (secondCount !== 0) {
     var secondDelay = 60 - secondCount
-    setTimeout(setInterval(tickMinute, 10 * 60), 10 * secondDelay)
+    setTimeout(setInterval(tickMinute, 1000 * 60), 1000 * secondDelay)
   }
   function tickMinute () {
     minuteCount++
-    minute.style.transform = 'rotate(' + minuteRotation(minuteCount, secondCount) + 'deg)'
+    minute.style.transform = 'rotate(' + minuteRotation(minuteCount) + 'deg)'
     if (minuteCount === 60) {
       minuteCount = 0
     }
   }
 
   var hourCount = currentHour
-  hour.style.transform = 'rotate(' + hourRotation(hourCount, minuteCount, secondCount) + 'deg)'
+  hour.style.transform = 'rotate(' + hourRotation(hourCount) + 'deg)'
   // to make sure hour hand turns only when the minute hand hits twelve
   if (minuteCount !== 60) {
     var minuteDelay = 60 - minuteCount
-    setTimeout(setInterval(tickHour, 10 * 60 * 60), 10 * minuteDelay)
+    setTimeout(setInterval(tickHour, 1000 * 60 * 60), 1000 * 60 * minuteDelay)
   }
   function tickHour () {
     hourCount++
-    hour.style.transform = 'rotate(' + hourRotation(hourCount, minuteCount, secondCount) + 'deg)'
+    hour.style.transform = 'rotate(' + hourRotation(hourCount) + 'deg)'
     if (hourCount === 12) {
       hourCount = 0
     }
