@@ -13,27 +13,15 @@ document.addEventListener('DOMContentLoaded', function () {
   var currentSecond = now.getSeconds()
 
   function secondRotation (secs) {
-    if (secs === 60) {
-      return 0
-    } else {
-      return secs * (360 / 60)
-    }
+    return secs * (360 / 60)
   }
 
-  function minuteRotation (mins, secs) {
-    if (mins === 60) {
-      return 0
-    } else {
-      return (mins * (360 / 60)) + (secs * (360 / 60 / 60))
-    }
+  function minuteRotation (mins) {
+    return mins * (360 / 60)
   }
 
-  function hourRotation (hrs, mins, secs) {
-    if (hrs === 12) {
-      return 0
-    } else {
-      return (hrs * (360 / 12)) + (mins * (360 / 12 / 60)) + (secs * (360 / 12 / 60 / 60))
-    }
+  function hourRotation (hrs) {
+    return hrs * (360 / 12)
   }
 
   var secondCount = currentSecond
