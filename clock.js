@@ -28,12 +28,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var minuteCount = 0
-  setInterval(tickHour, 1000*60)
+  setInterval(tickMinute, 1000 * 60)
+  function tickMinute () {
+    minuteCount++
+    minute.style.transform = 'rotate(' + secondMinRotation(minuteCount) + 'deg)'
+    if (minuteCount === 60) {
+      minuteCount = 0
+    }
+  }
 
-  var
-
-  var tickMinute = setInterval(tick(minute), 1000 * 60)
-  var tickHour = setInterval(tick(hour), 1000 * 60 * 60)
+  var hourCount = 0
+  setInterval(tickHour, 1000 * 60 * 60)
+  function tickHour () {
+    hourCount++
+    hour.style.transform = 'rotate(' + hourRotation(hourCount) + 'deg)'
+    if (hourCount === 12) {
+      hourCount = 0
+    }
+  }
 
   function secondMinRotation (num) {
     if (num === 60) {
